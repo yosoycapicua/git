@@ -1,0 +1,415 @@
+Asap
+Asap trip creation
+
+POST Search Asap
+{{g7.baseurl}}/products
+Search for a trip asap
+
+Headers
+Content-Type	application/json; charset=utf8
+Authorization	Basic {{g7.simpleAuthorization}}
+Body(raw)
+{
+	"dateTime": "{{g7.prebook.startDate}}",
+	"pickpointAddress": {
+		"streetNumber": "{{g7.prebook.startStreetNumber}}",
+		"streetName": "{{g7.prebook.startStreetName}}",
+		"city": "{{g7.prebook.startCity}}",
+		"zipCode": "{{g7.prebook.startZipCode}}",
+		"country": "France",
+		"latitude": {{g7.prebook.startLatitude}},
+		"longitude": {{g7.prebook.startLongitude}}
+	},
+	"destinationAddress": {
+		"streetNumber": "{{g7.prebook.endStreetNumber}}",
+		"streetName": "{{g7.prebook.endStreetName}}",
+		"city": "{{g7.prebook.endCity}}",
+		"zipCode": "{{g7.prebook.endZipCode}}",
+		"country": "France",
+		"latitude": {{g7.prebook.endLatitude}},
+		"longitude": {{g7.prebook.endLongitude}}
+	},
+	"nbPassengersAdult": 3
+}
+Sample RequestSearch Asap
+curl --request POST \
+  --url 'http://{{g7.baseurl}}/products' \
+  --header 'Authorization: Basic {{g7.simpleAuthorization}}' \
+  --header 'Content-Type: application/json; charset=utf8' \
+  --data '{
+	"dateTime": "{{g7.prebook.startDate}}",
+	"pickpointAddress": {
+		"streetNumber": "{{g7.prebook.startStreetNumber}}",
+		"streetName": "{{g7.prebook.startStreetName}}",
+		"city": "{{g7.prebook.startCity}}",
+		"zipCode": "{{g7.prebook.startZipCode}}",
+		"country": "France",
+		"latitude": {{g7.prebook.startLatitude}},
+		"longitude": {{g7.prebook.startLongitude}}
+	},
+	"destinationAddress": {
+		"streetNumber": "{{g7.prebook.endStreetNumber}}",
+		"streetName": "{{g7.prebook.endStreetName}}",
+		"city": "{{g7.prebook.endCity}}",
+		"zipCode": "{{g7.prebook.endZipCode}}",
+		"country": "France",
+		"latitude": {{g7.prebook.endLatitude}},
+		"longitude": {{g7.prebook.endLongitude}}
+	},
+	"nbPassengersAdult": 3
+}'
+GET Get eta (arrival time)
+{{g7.baseurl}}/ride/arrivalTime/{{g7.asap.startLatitude}}/{{g7.asap.startLongitude}}?partnerId={{g7.partnerAsap}}&carId={{g7.asap.carTypeId}}
+Get the eta of the ride for an asap booking
+
+Headers
+Content-Type	application/json; charset=utf8
+Authorization	Basic {{g7.simpleAuthorization}}
+Params
+partnerId	{{g7.partnerAsap}}
+carId	{{g7.asap.carTypeId}}
+Sample RequestGet eta (arrival time)
+curl --request GET \
+  --url 'http://{{g7.baseurl}}/ride/arrivalTime/{{g7.asap.startLatitude}}/{{g7.asap.startLongitude}}?partnerId={{g7.partnerAsap}}&carId={{g7.asap.carTypeId}}' \
+  --header 'Authorization: Basic {{g7.simpleAuthorization}}' \
+  --header 'Content-Type: application/json; charset=utf8'
+POST Create
+{{g7.baseurl}}/order
+Create an trip (order) from the previous search
+
+Headers
+Content-Type	application/json; charset=utf8
+Authorization	Basic {{g7.authorization}}
+Body(raw)
+{
+    "uid":"{{$guid}}",
+    "rides":[
+        {
+            "dateTime": "{{g7.asap.startDate}}",
+            "partnerId":"{{g7.partnerAsap}}",
+            "partnerServiceId":"{{g7.asap.partnerServiceId}}",
+           	"pickpointAddress": {
+				"streetNumber": "{{g7.asap.startStreetNumber}}",
+				"streetName": "{{g7.asap.startStreetName}}",
+				"city": "{{g7.asap.startCity}}",
+				"zipCode": "{{g7.asap.startZipCode}}",
+				"country": "France",
+				"latitude": {{g7.asap.startLatitude}},
+				"longitude": {{g7.asap.startLongitude}}
+			},
+			"destinationAddress": {
+				"streetNumber": "{{g7.asap.endStreetNumber}}",
+				"streetName": "{{g7.asap.endStreetName}}",
+				"city": "{{g7.asap.endCity}}",
+				"zipCode": "{{g7.asap.endZipCode}}",
+				"country": "France",
+				"latitude": {{g7.asap.endLatitude}},
+				"longitude": {{g7.asap.endLongitude}}
+			},
+            "passengerCivility":"MS",
+            "passengerName":"{{g7.lastname}}",
+            "passengerFirstName":"{{g7.firstname}}",
+            "telephone":"{{g7.phoneNumber}}",
+            "orderedCarType":"{{g7.asap.carTypeId}}",
+            "orderedOption":61,
+            "nbPassengersAdult":3,
+            "deferredRequest":false
+        }
+    ]
+
+}
+Sample RequestCreate
+curl --request POST \
+  --url 'http://{{g7.baseurl}}/order' \
+  --header 'Authorization: Basic {{g7.authorization}}' \
+  --header 'Content-Type: application/json; charset=utf8' \
+  --data '{
+    "uid":"{{$guid}}",
+    "rides":[
+        {
+            "dateTime": "{{g7.asap.startDate}}",
+            "partnerId":"{{g7.partnerAsap}}",
+            "partnerServiceId":"{{g7.asap.partnerServiceId}}",
+           	"pickpointAddress": {
+				"streetNumber": "{{g7.asap.startStreetNumber}}",
+				"streetName": "{{g7.asap.startStreetName}}",
+				"city": "{{g7.asap.startCity}}",
+				"zipCode": "{{g7.asap.startZipCode}}",
+				"country": "France",
+				"latitude": {{g7.asap.startLatitude}},
+				"longitude": {{g7.asap.startLongitude}}
+			},
+			"destinationAddress": {
+				"streetNumber": "{{g7.asap.endStreetNumber}}",
+				"streetName": "{{g7.asap.endStreetName}}",
+				"city": "{{g7.asap.endCity}}",
+				"zipCode": "{{g7.asap.endZipCode}}",
+				"country": "France",
+				"latitude": {{g7.asap.endLatitude}},
+				"longitude": {{g7.asap.endLongitude}}
+			},
+            "passengerCivility":"MS",
+            "passengerName":"{{g7.lastname}}",
+            "passengerFirstName":"{{g7.firstname}}",
+            "telephone":"{{g7.phoneNumber}}",
+            "orderedCarType":"{{g7.asap.carTypeId}}",
+            "orderedOption":61,
+            "nbPassengersAdult":3,
+            "deferredRequest":false
+        }
+    ]
+
+}'
+GET Get created order details
+{{g7.baseurl}}/order/{{g7.asap.orderId}}
+Get the trip details
+
+Headers
+Content-Type	application/json; charset=utf8
+Authorization	Basic {{g7.authorization}}
+Sample RequestGet created order details
+curl --request GET \
+  --url 'http://{{g7.baseurl}}/order/{{g7.asap.orderId}}' \
+  --header 'Authorization: Basic {{g7.authorization}}' \
+  --header 'Content-Type: application/json; charset=utf8'
+GET Ride follow
+{{g7.baseurl}}/ride/follow/{{g7.asap.orderRideId}}/{{$timestamp}}
+Follow a ride
+
+Headers
+Content-Type	application/json; charset=utf8
+Authorization	Basic {{g7.authorization}}
+Sample RequestRide follow
+curl --request GET \
+  --url 'http://{{g7.baseurl}}/ride/follow/{{g7.asap.orderRideId}}/{{$timestamp}}' \
+  --header 'Authorization: Basic {{g7.authorization}}' \
+  --header 'Content-Type: application/json; charset=utf8'
+DELETE Cancel
+{{g7.baseurl}}/order/{{g7.asap.orderId}}
+Cancel a trip
+
+Headers
+Content-Type	application/json; charset=utf8
+Authorization	Basic {{g7.authorization}}
+Sample RequestCancel
+curl --request DELETE \
+  --url 'http://{{g7.baseurl}}/order/{{g7.asap.orderId}}' \
+  --header 'Authorization: Basic {{g7.authorization}}' \
+  --header 'Content-Type: application/json; charset=utf8'
+GET Get created order details
+{{g7.baseurl}}/order/{{g7.asap.orderId}}
+Get the trip details
+
+Headers
+Content-Type	application/json; charset=utf8
+Authorization	Basic {{g7.authorization}}
+Sample RequestGet created order details
+curl --request GET \
+  --url 'http://{{g7.baseurl}}/order/{{g7.asap.orderId}}' \
+  --header 'Authorization: Basic {{g7.authorization}}' \
+  --header 'Content-Type: application/json; charset=utf8'
+GET List Pois
+{{g7.baseurl}}/pois
+Get the list of the Pois
+
+Headers
+Content-Type	application/json; charset=utf8
+Authorization	Basic {{g7.simpleAuthorization}}
+Sample RequestList Pois
+curl --request GET \
+  --url 'http://{{g7.baseurl}}/pois' \
+  --header 'Authorization: Basic {{g7.simpleAuthorization}}' \
+  --header 'Content-Type: application/json; charset=utf8'
+Prebook
+Prebook trip
+
+POST Search
+{{g7.baseurl}}/products
+Search availabilities
+
+Headers
+Content-Type	application/json; charset=utf8
+Authorization	Basic {{g7.simpleAuthorization}}
+Body(raw)
+{
+	"dateTime": "{{g7.prebook.startDate}}",
+	"pickpointAddress": {
+		"streetNumber": "{{g7.prebook.startStreetNumber}}",
+		"streetName": "{{g7.prebook.startStreetName}}",
+		"city": "{{g7.prebook.startCity}}",
+		"zipCode": "{{g7.prebook.startZipCode}}",
+		"country": "France",
+		"latitude": {{g7.prebook.startLatitude}},
+		"longitude": {{g7.prebook.startLongitude}}
+	},
+	"destinationAddress": {
+		"streetNumber": "{{g7.prebook.endStreetNumber}}",
+		"streetName": "{{g7.prebook.endStreetName}}",
+		"city": "{{g7.prebook.endCity}}",
+		"zipCode": "{{g7.prebook.endZipCode}}",
+		"country": "France",
+		"latitude": {{g7.prebook.endLatitude}},
+		"longitude": {{g7.prebook.endLongitude}}
+	},
+	"nbPassengersAdult": 3
+}
+Sample RequestSearch
+curl --request POST \
+  --url 'http://{{g7.baseurl}}/products' \
+  --header 'Authorization: Basic {{g7.simpleAuthorization}}' \
+  --header 'Content-Type: application/json; charset=utf8' \
+  --data '{
+	"dateTime": "{{g7.prebook.startDate}}",
+	"pickpointAddress": {
+		"streetNumber": "{{g7.prebook.startStreetNumber}}",
+		"streetName": "{{g7.prebook.startStreetName}}",
+		"city": "{{g7.prebook.startCity}}",
+		"zipCode": "{{g7.prebook.startZipCode}}",
+		"country": "France",
+		"latitude": {{g7.prebook.startLatitude}},
+		"longitude": {{g7.prebook.startLongitude}}
+	},
+	"destinationAddress": {
+		"streetNumber": "{{g7.prebook.endStreetNumber}}",
+		"streetName": "{{g7.prebook.endStreetName}}",
+		"city": "{{g7.prebook.endCity}}",
+		"zipCode": "{{g7.prebook.endZipCode}}",
+		"country": "France",
+		"latitude": {{g7.prebook.endLatitude}},
+		"longitude": {{g7.prebook.endLongitude}}
+	},
+	"nbPassengersAdult": 3
+}'
+POST Create
+{{g7.baseurl}}/order
+Create an trip (order) from the previous search
+
+Headers
+Content-Type	application/json; charset=utf8
+Authorization	Basic {{g7.authorization}}
+Body(raw)
+{
+    "uid":"{{$guid}}",
+    "rides":[
+        {
+            "dateTime": "{{g7.prebook.startDate}}",
+            "partnerId":"{{g7.partnerPrebook}}",
+            "partnerServiceId":"{{g7.prebook.partnerServiceId}}",
+           	"pickpointAddress": {
+				"streetNumber": "{{g7.prebook.startStreetNumber}}",
+				"streetName": "{{g7.prebook.startStreetName}}",
+				"city": "{{g7.prebook.startCity}}",
+				"zipCode": "{{g7.prebook.startZipCode}}",
+				"country": "France",
+				"latitude": {{g7.prebook.startLatitude}},
+				"longitude": {{g7.prebook.startLongitude}}
+			},
+			"destinationAddress": {
+				"streetNumber": "{{g7.prebook.endStreetNumber}}",
+				"streetName": "{{g7.prebook.endStreetName}}",
+				"city": "{{g7.prebook.endCity}}",
+				"zipCode": "{{g7.prebook.endZipCode}}",
+				"country": "France",
+				"latitude": {{g7.prebook.endLatitude}},
+				"longitude": {{g7.prebook.endLongitude}}
+			},
+            "passengerCivility":"MS",
+            "passengerName":"{{g7.lastname}}",
+            "passengerFirstName":"{{g7.firstname}}",
+            "telephone":"{{g7.phoneNumber}}",
+            "orderedCarType":"{{g7.prebook.carTypeId}}",
+            "orderedOption":61,
+            "nbPassengersAdult":3,
+            "deferredRequest":true
+        }
+    ]
+}
+Sample RequestCreate
+curl --request POST \
+  --url 'http://{{g7.baseurl}}/order' \
+  --header 'Authorization: Basic {{g7.authorization}}' \
+  --header 'Content-Type: application/json; charset=utf8' \
+  --data '{
+    "uid":"{{$guid}}",
+    "rides":[
+        {
+            "dateTime": "{{g7.prebook.startDate}}",
+            "partnerId":"{{g7.partnerPrebook}}",
+            "partnerServiceId":"{{g7.prebook.partnerServiceId}}",
+           	"pickpointAddress": {
+				"streetNumber": "{{g7.prebook.startStreetNumber}}",
+				"streetName": "{{g7.prebook.startStreetName}}",
+				"city": "{{g7.prebook.startCity}}",
+				"zipCode": "{{g7.prebook.startZipCode}}",
+				"country": "France",
+				"latitude": {{g7.prebook.startLatitude}},
+				"longitude": {{g7.prebook.startLongitude}}
+			},
+			"destinationAddress": {
+				"streetNumber": "{{g7.prebook.endStreetNumber}}",
+				"streetName": "{{g7.prebook.endStreetName}}",
+				"city": "{{g7.prebook.endCity}}",
+				"zipCode": "{{g7.prebook.endZipCode}}",
+				"country": "France",
+				"latitude": {{g7.prebook.endLatitude}},
+				"longitude": {{g7.prebook.endLongitude}}
+			},
+            "passengerCivility":"MS",
+            "passengerName":"{{g7.lastname}}",
+            "passengerFirstName":"{{g7.firstname}}",
+            "telephone":"{{g7.phoneNumber}}",
+            "orderedCarType":"{{g7.prebook.carTypeId}}",
+            "orderedOption":61,
+            "nbPassengersAdult":3,
+            "deferredRequest":true
+        }
+    ]
+}'
+GET Get created order details
+{{g7.baseurl}}/order/{{g7.prebook.orderId}}
+Get the trip details
+
+Headers
+Content-Type	application/json; charset=utf8
+Authorization	Basic {{g7.authorization}}
+Sample RequestGet created order details
+curl --request GET \
+  --url 'http://{{g7.baseurl}}/order/{{g7.prebook.orderId}}' \
+  --header 'Authorization: Basic {{g7.authorization}}' \
+  --header 'Content-Type: application/json; charset=utf8'
+GET Ride follow
+{{g7.baseurl}}/ride/follow/{{g7.prebook.orderRideId}}/{{$timestamp}}
+Follow a ride
+
+Headers
+Content-Type	application/json; charset=utf8
+Authorization	Basic {{g7.authorization}}
+Sample RequestRide follow
+curl --request GET \
+  --url 'http://{{g7.baseurl}}/ride/follow/{{g7.prebook.orderRideId}}/{{$timestamp}}' \
+  --header 'Authorization: Basic {{g7.authorization}}' \
+  --header 'Content-Type: application/json; charset=utf8'
+DELETE Cancel
+{{g7.baseurl}}/order/{{g7.prebook.orderId}}
+Cancel a trip
+
+Headers
+Content-Type	application/json; charset=utf8
+Authorization	Basic {{g7.authorization}}
+Sample RequestCancel
+curl --request DELETE \
+  --url 'http://{{g7.baseurl}}/order/{{g7.prebook.orderId}}' \
+  --header 'Authorization: Basic {{g7.authorization}}' \
+  --header 'Content-Type: application/json; charset=utf8'
+GET Get cancelled order details
+{{g7.baseurl}}/order/{{g7.prebook.orderId}}
+Get the trip details
+
+Headers
+Content-Type	application/json; charset=utf8
+Authorization	Basic {{g7.authorization}}
+Sample RequestGet cancelled order details
+curl --request GET \
+  --url 'http://{{g7.baseurl}}/order/{{g7.prebook.orderId}}' \
+  --header 'Authorization: Basic {{g7.authorization}}' \
+  --header 'Content-Type: application/json; charset=utf8'
