@@ -61,7 +61,7 @@ CHIP ALU {
    //f
    Add16(a=x2, b=y2, out=x2addy2);
    And16(a=x2, b=y2, out=x2andy2);
-   Mux16(a=x2addy2, b=x2andy2, sel=f, out=x2fy2);
+   Mux16(a=x2andy2, b=x2addy2, sel=f, out=x2fy2);
 
    // no
    Not16(in=x2fy2, out=notx2fy2);
