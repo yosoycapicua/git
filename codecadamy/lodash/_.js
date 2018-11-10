@@ -36,13 +36,19 @@ _ = {
 			}
 			while (string.length < length) {
 				string = string.concat(" ");
-				string = " ".concat(string);
-				
+				string = " ".concat(string);	
 			}
-
 		}
 		return string;
-
+	},
+	has: function (obj, key) {
+		if (obj.key != undefined && Object.keys(obj).find(function (mykey) {
+			return mykey === key;
+		})) {
+			return true;
+		}else{
+			return false;
+		}
 	}
 	};
 
