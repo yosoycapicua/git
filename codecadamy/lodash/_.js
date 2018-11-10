@@ -26,11 +26,25 @@ _ = {
 	words: function (string) {	
 		
 		return string.split(" ");
+	},
+	pad: function (string, length) {
+		let extraPad = (length - string.length)% 2;
+		console.log(extraPad);
+		if (string.length < length) {
+			if(extraPad === 1){
+				string = string.concat(" ")
+			}
+			while (string.length < length) {
+				string = string.concat(" ");
+				string = " ".concat(string);
+				
+			}
+
+		}
+		return string;
+
 	}
 	};
-
-
-// if not in range, put in range
 
 
 
