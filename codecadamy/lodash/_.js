@@ -87,6 +87,21 @@ _ = {
 		
 		array = this.drop(array, index);
 		return array;
+	},
+	chunk: function (array, size) {
+		let chunk;
+		let newArray = [];
+		if(size === undefined){
+			size = 1;
+		}
+		while(array.length > size){
+			chunk = array.slice(0, size);
+			array = array.slice(size);
+			newArray.push(chunk);
+		}
+		newArray.push(array);
+
+		return newArray;
 	}
 	};
 
