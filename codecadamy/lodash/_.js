@@ -64,10 +64,21 @@ _ = {
 		let values = Object.values(obj); // array of values
 		let myValue = values.find(pred); // wanted value
 		let index = values.indexOf(myValue); // index of wanted value
-		
+
 		console.log(Object.keys(obj)[index]);
 
 		return Object.keys(obj)[index];
+	}, 
+	drop: function (array, num) {
+		array.reverse();
+		if (num === undefined) {
+			num = 1;
+		}
+		for (let i = 0; i < num; i++) {
+			array.pop()
+		}
+		array.reverse();
+		return array;
 	}
 	};
 
