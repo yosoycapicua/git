@@ -59,6 +59,15 @@ _ = {
 			newObj[keys[i]] = values[i];
 		}
 		return newObj;
+	},
+	findKey: function (obj, pred) {
+		let values = Object.values(obj); // array of values
+		let myValue = values.find(pred); // wanted value
+		let index = values.indexOf(myValue); // index of wanted value
+		
+		console.log(Object.keys(obj)[index]);
+
+		return Object.keys(obj)[index];
 	}
 	};
 
