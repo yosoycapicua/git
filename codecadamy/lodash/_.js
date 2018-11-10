@@ -22,6 +22,10 @@ _ = {
 		}else{
 			return "error while deciding if in or out";
 		}
+	},
+	words: function (string) {	
+		
+		return string.split(" ");
 	}
 	};
 
