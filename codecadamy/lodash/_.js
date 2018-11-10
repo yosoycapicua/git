@@ -4,7 +4,7 @@ _ = {
 			let lowerClampedValue = Math.max(number, lower);
 			let clampedValue = Math.min(lowerClampedValue, upper);
 			return clampedValue;
-		},
+	},
 	inRange: function (num, start, end) {
 		if(typeof end === "undefined"){
 			end = start;
@@ -49,6 +49,16 @@ _ = {
 		}else{
 			return false;
 		}
+	},
+	invert: function (obj) {
+		let keys = Object.values(obj);
+		let values = Object.keys(obj);
+		console.log(values);
+		let newObj = {};
+		for (let i = 0; i < keys.length; i++) {
+			newObj[keys[i]] = values[i];
+		}
+		return newObj;
 	}
 	};
 
