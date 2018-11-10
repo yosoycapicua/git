@@ -79,6 +79,14 @@ _ = {
 		}
 		array.reverse();
 		return array;
+	},
+	dropWhile: function (array, pred) {
+		let index = array.findIndex(function (element, ind) {
+			return !pred(element, ind, array);
+		});
+		
+		array = this.drop(array, index);
+		return array;
 	}
 	};
 
