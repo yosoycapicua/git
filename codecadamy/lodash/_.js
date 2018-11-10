@@ -6,10 +6,21 @@ _ = {
 			return clampedValue;
 		},
 	inRange: function (num, start, end) {
-		if (num < start || num >= end) {
+		if(typeof end === "undefined"){
+			end = start;
+			start = 0;
+		} 
+		if(start > end){
+			let newStart = end;
+			end = start;
+			start = newStart;
+		}  
+		if(num < start || num >= end) {
 			return false;
-		}else{
+		}else if(start <= num && num < end){
 			return true;
+		}else{
+			return "error while deciding if in or out";
 		}
 	}
 	};
