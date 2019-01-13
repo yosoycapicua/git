@@ -13,5 +13,7 @@ let business = {
 }
 
 class Business extends React.Component{
-    
+    render(
+        
+    )
 }
