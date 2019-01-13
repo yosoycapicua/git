@@ -11,3 +11,7 @@ let business = {
     rating: 4.5,
     reviewCount: 90
 }
+
+class Business extends React.Component{
+    
+}
