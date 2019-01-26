@@ -21,8 +21,8 @@ const businesses = [
   business, business, business]
 
 class App extends Component {
-  searchYelp(){
-    
+  searchYelp(term, location, sortBy){
+
   }
   render() {
     return (<div className="App">
