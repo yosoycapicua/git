@@ -6,19 +6,21 @@ const sortByOptions = {
     "Highest Rated": "rating",
     "Most Reviewed": "review_count"
 }
-sortByOptions.getSortByClass = function(sortByOption){
-
-}
-
-
 
 class SearchBar extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             term: "",
             location: "",
             sortBy: "best_match"
+        }
+    }
+    getSortByClass(sortByOption) {
+        if (this.state.sortBy === sortByOption) {
+            return "active"
+        }else{
+            return ""
         }
     }
     renderSortByOptions() {
@@ -31,7 +33,7 @@ class SearchBar extends React.Component {
         return (<div className="SearchBar">
             <div className="SearchBar-sort-options">
                 <ul>{this.renderSortByOptions}
-          </ul>
+                </ul>
             </div>
             <div className="SearchBar-fields">
                 <input placeholder="Search Businesses" />
