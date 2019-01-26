@@ -22,7 +22,7 @@ const businesses = [
 
 class App extends Component {
   searchYelp(term, location, sortBy){
-
+    console.log("searching yelp with pizza, brooklyn, best_match")
   }
   render() {
     return (<div className="App">
