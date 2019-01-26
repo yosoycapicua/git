@@ -21,6 +21,9 @@ const businesses = [
   business, business, business]
 
 class App extends Component {
+  searchYelp(){
+    
+  }
   render() {
     return (<div className="App">
       <h1>ravenous</h1>
