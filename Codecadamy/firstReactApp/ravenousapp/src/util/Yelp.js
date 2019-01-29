@@ -9,6 +9,8 @@ let Yelp = {
             headers: {
                 Authorization: `Bearer ${apiKey}`
             }
+        }).then(response=>{
+            return response.json()
         })
     }
 }
