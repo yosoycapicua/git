@@ -2,8 +2,7 @@ const apiKey = "BPwUE121d-04QXdbt7LObIucO-nRKGFB4RHOMp3IZVeztWea_YQLRmhlZ3S1bo2H
 
 let Yelp = {
     search(term, location, sortBy){
-        return fetch(https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}&sort_by=${sortBy}
-            )
+        return fetch(`https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}&sort_by=${sortBy}`)
     }
 }
 
