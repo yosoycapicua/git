@@ -22,6 +22,13 @@ const businesses = [
   business, business, business]
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      businesses: []
+    }
+    this.searchYelp = this.searchYelp.bind(this)
+  }
   searchYelp(term, location, sortBy){
     console.log("searching yelp with pizza, brooklyn, best_match")
   }
